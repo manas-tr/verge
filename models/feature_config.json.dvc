@@ -1,0 +1,5 @@
+outs:
+- md5: cfc16a785cbadec9611a3f85f9308cac
+  size: 310
+  hash: md5
+  path: feature_config.json

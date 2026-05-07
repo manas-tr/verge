@@ -1,6 +1,9 @@
-data/
+data/processed/*.csv
+!data/processed/*.dvc
 mlruns/
-models/
+models/*.joblib
+models/*.json
+!models/*.dvc
 __pycache__/
 *.pyc
 .env

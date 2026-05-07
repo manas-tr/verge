@@ -1,0 +1,5 @@
+outs:
+- md5: 52586735892588861fc6826530dbf266
+  size: 1389274
+  hash: md5
+  path: energy_model.joblib
