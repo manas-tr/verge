@@ -1,5 +1,6 @@
 data/processed/*.csv
 !data/processed/*.dvc
+data/raw/
 mlruns/
 models/*.joblib
 models/*.json
