@@ -32,6 +32,10 @@ It is a working pipeline that connects data, modeling, orchestration, serving, d
 * Kubernetes for deployment
 * GitHub Actions for CI
 
+## System architecture
+
+![System Architecture](assets/architecture.png)
+
 ## Workflow
 
 ### Main workflow
