@@ -4,7 +4,7 @@ CarbonPilot is a carbon-aware ML system for real workloads.
 
 It takes a job spec, estimates the energy cost, compares a few safe execution options, and returns the best one. The goal is simple: help ML teams waste less compute without adding friction.
 
-## Live demo
+## Live
 
 - Frontend: https://carbonpilot.streamlit.app/
 
