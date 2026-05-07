@@ -1,20 +1,36 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import joblib
 import json
 import pandas as pd
 import numpy as np
 import socket
-
-# Load artifacts once at startup
-MODEL_PATH = "models/energy_model.joblib"
-FEATURE_PATH = "models/feature_config.json"
-
-model = joblib.load(MODEL_PATH)
-with open(FEATURE_PATH) as f:
-    feature_cols = json.load(f)
+from pathlib import Path
 
 app = FastAPI(title="CarbonPilot API")
+
+BASE_DIR = Path(__file__).resolve().parents[2]
+MODEL_PATH = BASE_DIR / "models" / "energy_model.joblib"
+FEATURE_PATH = BASE_DIR / "models" / "feature_config.json"
+
+model = None
+feature_cols = None
+
+
+def load_artifacts():
+    global model, feature_cols
+
+    if model is None:
+        if not MODEL_PATH.exists():
+            raise FileNotFoundError(f"Model file not found: {MODEL_PATH}")
+        model = joblib.load(MODEL_PATH)
+
+    if feature_cols is None:
+        if not FEATURE_PATH.exists():
+            raise FileNotFoundError(f"Feature config not found: {FEATURE_PATH}")
+        with open(FEATURE_PATH, "r") as f:
+            feature_cols = json.load(f)
+
 
 class JobInput(BaseModel):
     cpus_req: int
@@ -25,6 +41,7 @@ class JobInput(BaseModel):
     job_duration_sec: float
     avgmemoryutilization_pct: float
     avgsmutilization_pct: float
+
 
 def build_features(input_data):
     df = pd.DataFrame([input_data])
@@ -40,7 +57,10 @@ def build_features(input_data):
 
     return df
 
+
 def recommend_logic(input_data):
+    load_artifacts()
+
     base_cpu = input_data["cpus_req"]
     base_mem = input_data["mem_req"]
 
@@ -61,7 +81,6 @@ def recommend_logic(input_data):
             pred_log = model.predict(X)[0]
             pred_energy = float(np.expm1(pred_log))
 
-            # Balanced penalty
             cpu_ratio = cpus / base_cpu
             mem_ratio = mem / base_mem
 
@@ -89,10 +108,13 @@ def home():
 
 @app.post("/recommend")
 def recommend(job: JobInput):
-    results = recommend_logic(job.dict())
-    best=results[0]
-    return {
-    "pod": socket.gethostname(),
-    "best_config": best,
-    "recommendations": results
-    }
+    try:
+        results = recommend_logic(job.model_dump())
+        best = results[0]
+        return {
+            "pod": socket.gethostname(),
+            "best_config": best,
+            "recommendations": results
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
