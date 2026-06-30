@@ -9,14 +9,14 @@ import streamlit as st
 
 
 st.set_page_config(
-    page_title="CarbonPilot",
+    page_title="Verge",
     page_icon="🌍",
     layout="wide",
     initial_sidebar_state="collapsed",
 )
 
 
-API_URL = "https://carbonpilot-api.onrender.com/"
+API_URL = "https://verge-api.onrender.com/"
 RECOMMEND_ENDPOINT = f"{API_URL.rstrip('/')}/recommend"
 ROOT_DIR = Path(__file__).resolve().parent
 VISUAL_PATH = ROOT_DIR / "reduce_co2.jpg"
@@ -409,7 +409,7 @@ st.markdown(
 )
 
 
-st.sidebar.markdown("## CarbonPilot")
+st.sidebar.markdown("## Verge")
 st.sidebar.markdown("Workload energy estimator.")
 st.sidebar.markdown("### Endpoint")
 st.sidebar.code(RECOMMEND_ENDPOINT, language="text")
@@ -418,7 +418,7 @@ st.sidebar.code(RECOMMEND_ENDPOINT, language="text")
 st.markdown(
     f"""
     <div class="topbar">
-        <div class="brand">CarbonPilot</div>
+        <div class="brand">Verge</div>
         <div class="nav">
             <a href="#job-planner">Job spec</a>
             <a href="#results">Rankings</a>
@@ -450,7 +450,7 @@ st.markdown(
             <div class="run-kicker">Scheduler input. Energy output.</div>
             <h1 class="run-title">Find the <span>lowest-energy</span><br>run config.</h1>
             <p class="run-copy">
-                Send the job spec. CarbonPilot scores CPU and memory choices, then returns the config with the lowest estimated energy use.
+                Send the job spec. Verge scores CPU and memory choices, then returns the config with the lowest estimated energy use.
             </p>
             <div class="run-actions">
                 <a class="primary-link" href="#job-planner">Edit job spec</a>

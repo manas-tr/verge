@@ -1,4 +1,4 @@
-name: CarbonPilot CI
+name: Verge CI
 
 on:
   push:
@@ -41,4 +41,4 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t carbonpilot .
+          docker build -t verge .

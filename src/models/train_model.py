@@ -105,7 +105,7 @@ def evaluate_original_scale(y_true_log, y_pred_log):
 
 def main():
     os.makedirs(MODEL_DIR, exist_ok=True)
-    mlflow.set_experiment("carbonpilot-energy-model")
+    mlflow.set_experiment("verge-energy-model")
 
     df = load_and_clean()
     df = feature_engineering(df)

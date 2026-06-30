@@ -7,7 +7,7 @@ import numpy as np
 import socket
 from pathlib import Path
 
-app = FastAPI(title="CarbonPilot API")
+app = FastAPI(title="Verge API")
 
 BASE_DIR = Path(__file__).resolve().parents[2]
 MODEL_PATH = BASE_DIR / "models" / "energy_model.joblib"
@@ -103,7 +103,7 @@ def recommend_logic(input_data):
 
 @app.get("/")
 def home():
-    return {"message": "CarbonPilot API is on the run!"}
+    return {"message": "Verge API is on the run!"}
 
 
 @app.post("/recommend")

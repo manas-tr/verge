@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: carbonpilot-api
+    name: verge-api
     runtime: python
 
     buildCommand: |

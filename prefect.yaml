@@ -5,7 +5,7 @@
 # with your flow code.
 
 # Generic metadata about this project
-name: carbonpilot
+name: verge
 prefect-version: 3.6.29
 
 # build section allows you to manage and build docker images
@@ -19,12 +19,12 @@ push: null
 # this project in remote locations
 pull:
 - prefect.deployments.steps.set_working_directory:
-    directory: C:\Users\manas\Downloads\Projects_ML\MLOps\carbonpilot
+    directory: .
 
 # the deployments section allows you to provide configuration
 # for deploying flows
 deployments:
-- name: carbonpilot-deployment
+- name: verge-deployment
   version: null
   tags: []
   concurrency_limit: null
@@ -32,7 +32,7 @@ deployments:
   entrypoint: src/pipeline/flow.py:training_pipeline
   parameters: {}
   work_pool:
-    name: carbonpilot-pool
+    name: verge-pool
     work_queue_name: null
     job_variables: {}
   schedules:

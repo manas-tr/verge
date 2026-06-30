@@ -1,16 +1,16 @@
-# CarbonPilot
+# Verge
 
-CarbonPilot is a carbon-aware ML system for real workloads.
+Verge is a carbon-aware ML system for real workloads.
 
 It takes a job spec, estimates the energy cost, compares a few safe execution options, and returns the best one. The goal is simple: help ML teams waste less compute without adding friction.
 
 ## Live
 
-- Frontend: https://carbonpilot.streamlit.app/
+- Frontend: https://verge.streamlit.app/
 
 ## Why it exists
 
-Most ML systems optimize for speed, accuracy, or cost. CarbonPilot adds one more signal that matters: energy.
+Most ML systems optimize for speed, accuracy, or cost. Verge adds one more signal that matters: energy.
 
 It is a working pipeline that connects data, modeling, orchestration, serving, deployment, and a clean interface.
 
@@ -44,7 +44,7 @@ It is a working pipeline that connects data, modeling, orchestration, serving, d
 
 ### Main workflow
 
-![CarbonPilot](assets/home.png)
+![Verge](assets/home.png)
 
 ### Recommendation output
 
@@ -56,7 +56,7 @@ It is a working pipeline that connects data, modeling, orchestration, serving, d
 
 ## Kubernetes scaling
 
-CarbonPilot runs behind Kubernetes with multiple API pods. Requests are distributed across replicas during load testing.
+Verge runs behind Kubernetes with multiple API pods. Requests are distributed across replicas during load testing.
 
 ![Kubernetes Pods](assets/k8s_pods.png)
 
@@ -90,7 +90,7 @@ The model is an XGBoost regressor trained on job-level features and runtime sign
 ## Repo layout
 
 ```text
-carbonpilot/
+verge/
 ├── src/
 │   ├── app/
 │   ├── data/

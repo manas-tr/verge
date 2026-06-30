@@ -33,7 +33,7 @@ def run_training_script():
     return "Training completed successfully"
 
 
-@flow(name="carbonpilot_pipeline")
+@flow(name="verge_pipeline")
 def training_pipeline():
     status = run_training_script()
     print(status)
